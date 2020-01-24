@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskList from '../task-list';
+import Panel from '../panel';
 
 import "./app.sass";
 
@@ -27,11 +28,16 @@ class App extends React.Component {
                 this.createTask("Описание задачи №4", "Средний"),
             ],
         };
+
+        this.handleAddTask = () => {
+            console.log('Hello world!')
+        };
     };
     
     render() {
         return(
             <div className="container">
+                <Panel handleAddTask={this.handleAddTask} />
                 <TaskList data={this.state.tasks} />
             </div>
         );
