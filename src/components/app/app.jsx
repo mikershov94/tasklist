@@ -20,14 +20,19 @@ class App extends React.Component {
         };
 
         this.state = {
-            tasks: [],
+            tasks: [
+                this.createTask("Описание задачи №1"),
+                this.createTask("Описание задачи №2", "Средний"),
+                this.createTask("Описание задачи №3", "Высокий"),
+                this.createTask("Описание задачи №4", "Средний"),
+            ],
         };
     };
     
     render() {
         return(
             <div className="container">
-                <TaskList />
+                <TaskList data={this.state.tasks} />
             </div>
         );
     }
