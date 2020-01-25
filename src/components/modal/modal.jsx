@@ -6,7 +6,7 @@ import "./modal.sass"
 
 const Modal = ({handleAddTask}) => {
     return(
-        <Popup trigger={<button className="panel__add-but" onClick={handleAddTask} >Добавить задачу</button>}
+        <Popup trigger={<button className="panel__add-but" >Добавить задачу</button>}
                modal
                closeOnDocumentClick>
             { close => (
@@ -14,7 +14,8 @@ const Modal = ({handleAddTask}) => {
                     <a className="modal__close" onClick={close}>
                         &times;
                     </a>
-                    <Form />
+                    <Form handleAddTask={handleAddTask}
+                          close={close} />
                 </div>
             )}
         </Popup>

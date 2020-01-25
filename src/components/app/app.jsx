@@ -15,22 +15,34 @@ class App extends React.Component {
                 description: description,
                 status: "Новая",
                 priority: priority,
-                datePlan: new Date(date),
+                datePlan: date,
                 dateFact: "-"
             }
         };
 
         this.state = {
             tasks: [
-                this.createTask("Описание задачи №1","2019-1-1"),
-                this.createTask("Описание задачи №2","2019-4-23" , "Средний"),
-                this.createTask("Описание задачи №3","2019-2-16" , "Высокий"),
-                this.createTask("Описание задачи №4","2019-5-12" , "Средний"),
+                this.createTask("Описание задачи №1", new Date("2019-1-1")),
+                this.createTask("Описание задачи №2", new Date("2019-4-23"), "Средний"),
+                this.createTask("Описание задачи №3", new Date("2019-2-16"), "Высокий"),
+                this.createTask("Описание задачи №4", new Date("2019-5-12"), "Средний"),
             ],
         };
 
-        this.handleAddTask = () => {
-            console.log('Hello world!')
+        this.handleAddTask = (formState) => {
+            const newTask = this.createTask(formState.description,
+                                            formState.datePlan,
+                                            formState.priority);
+            this.setState(({tasks}) => {
+                const newData = [
+                    ...tasks,
+                    newTask
+                ];
+                
+                return {
+                    tasks: newData,
+                }
+            });
         };
     };
     

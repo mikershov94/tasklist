@@ -38,6 +38,9 @@ class Form extends React.Component {
 
         this.onFormSubmit = (e) => {
             e.preventDefault()
+            this.props.handleAddTask(this.state);
+
+            this.props.close();
         };
     }
 
