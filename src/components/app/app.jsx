@@ -9,23 +9,23 @@ class App extends React.Component {
         super();
         this.initId = 0;
 
-        this.createTask = (description, priority="Низкий") => {
+        this.createTask = (description, date, priority="Низкий") => {
             return {
                 id: this.initId++,
                 description: description,
                 status: "Новая",
                 priority: priority,
-                datePlan: "01.01.2019",
+                datePlan: new Date(date),
                 dateFact: "-"
             }
         };
 
         this.state = {
             tasks: [
-                this.createTask("Описание задачи №1"),
-                this.createTask("Описание задачи №2", "Средний"),
-                this.createTask("Описание задачи №3", "Высокий"),
-                this.createTask("Описание задачи №4", "Средний"),
+                this.createTask("Описание задачи №1","2019-1-1"),
+                this.createTask("Описание задачи №2","2019-4-23" , "Средний"),
+                this.createTask("Описание задачи №3","2019-2-16" , "Высокий"),
+                this.createTask("Описание задачи №4","2019-5-12" , "Средний"),
             ],
         };
 
