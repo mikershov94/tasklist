@@ -5,7 +5,9 @@ const TaskList = (props) => {
     const items = props.data.map((item) => {
         const { id, ...itemProps } = item;
         return(
-            <TaskListItem key={id} {...item} />
+            <TaskListItem key={id} 
+                          handlerDeleteTask={() => props.handlerDeleteTask(id)} 
+                          {...itemProps} />
         );
     })
 

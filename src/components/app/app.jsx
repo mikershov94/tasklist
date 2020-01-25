@@ -44,13 +44,32 @@ class App extends React.Component {
                 }
             });
         };
+
+        this.handlerDeleteTask = (id) => {
+            this.setState(({tasks}) => {
+                const idx = tasks.findIndex((task) => task.id === id);
+
+                const before = tasks.slice(0, idx);
+                const after = tasks.slice(idx + 1);
+
+                const newData = [
+                    ...before,
+                    ...after
+                ];
+
+                return {
+                    tasks: newData,
+                };
+            })
+        };
     };
     
     render() {
         return(
             <div className="container">
                 <Panel handleAddTask={this.handleAddTask} />
-                <TaskList data={this.state.tasks} />
+                <TaskList data={this.state.tasks}
+                          handlerDeleteTask={this.handlerDeleteTask} />
             </div>
         );
     }

@@ -7,8 +7,8 @@ class Form extends React.Component {
         super();
         this.state = {
             description: '',
-            priority: 'low',
-            status: 'new',
+            priority: 'Низкий',
+            status: 'Новый',
             datePlan: new Date(),
         };
 
@@ -57,9 +57,9 @@ class Form extends React.Component {
                         <div className="form__input-priority">
                             <label>Приоритет: </label>
                             <select onChange={this.onPriorityChange}>
-                                <option value="low">Низкий</option>
-                                <option value="mid">Средний</option>
-                                <option value="high">Высокий</option>
+                                <option value="Низкий">Низкий</option>
+                                <option value="Средний">Средний</option>
+                                <option value="Высокий">Высокий</option>
                             </select>
                         </div>
                         <div className="form__input-status">
