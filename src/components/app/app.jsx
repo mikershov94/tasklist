@@ -38,6 +38,8 @@ class App extends React.Component {
                 this.createTask("Описание задачи №3", new Date("2019-2-16"), "Высокий"),
                 this.createTask("Описание задачи №4", new Date("2019-5-12"), "Средний"),
             ],
+            filter: 'all',
+            term: ''
         };
 
         this.handlerAddTask = (formState) => {
@@ -94,12 +96,17 @@ class App extends React.Component {
                 };
             })
         };
+
+        this.onSearchTask = (term) => {
+            console.log(term)
+        };
     };
     
     render() {
         return(
             <div className="container">
-                <Panel handlerAddTask={this.handlerAddTask} />
+                <Panel handlerAddTask={this.handlerAddTask}
+                       onSearchTask={this.onSearchTask} />
                 <TaskList data={this.state.tasks}
                           handlerDeleteTask={this.handlerDeleteTask}
                           handlerEditTask={this.handlerEditTask} />
