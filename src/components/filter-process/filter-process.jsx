@@ -6,7 +6,7 @@ const FilterProcess = (props) => {
     return(
         <div className={bemClass}
              onClick={() => props.onClickFilter('process')}>
-            В работе - <span>1</span>
+            <span>{`В работе - ${props.count}`}</span>
         </div>
     );
 };

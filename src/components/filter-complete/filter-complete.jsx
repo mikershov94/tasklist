@@ -6,7 +6,7 @@ const FilterComplete = (props) => {
     return(
         <div className={bemClass}
              onClick={() => props.onClickFilter('complete')}>
-            Завершено - <span>2</span>
+            <span>{`Завершено - ${props.count}`}</span>
         </div>
     );
 };

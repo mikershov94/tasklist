@@ -6,7 +6,7 @@ const FilterAll = (props) => {
     return(
         <div className={bemClass}
              onClick={() => props.onClickFilter('all')}>
-            Всего - <span>4</span>
+            <span>{`Всего - ${props.count}`}</span>
         </div>
     );
 };

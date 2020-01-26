@@ -8,14 +8,14 @@ class App extends React.Component {
     constructor() {
         super();
         this.initId = 0;
-        this.createTask = (description, date, priority="Низкий") => {
+        this.createTask = (description, date, status, priority="Низкий", dateFact="-") => {
             return {
                 id: this.initId++,
                 description: description,
-                status: "Новая",
+                status: status,
                 priority: priority,
                 datePlan: date,
-                dateFact: "-"
+                dateFact: dateFact
             }
         };
 
@@ -33,10 +33,10 @@ class App extends React.Component {
         this.state = {
             edit: false,
             tasks: [
-                this.createTask("Описание задачи №1", new Date("2019-1-1")),
-                this.createTask("Описание задачи №2", new Date("2019-4-23"), "Средний"),
-                this.createTask("Описание задачи №3", new Date("2019-2-16"), "Высокий"),
-                this.createTask("Описание задачи №4", new Date("2019-5-12"), "Средний"),
+                this.createTask("Описание задачи №1", new Date("2019-1-1"), "Новая"),
+                this.createTask("Описание задачи №2", new Date("2019-4-23"), "В работе", "Средний"),
+                this.createTask("Описание задачи №3", new Date("2019-2-16"), "Завершена", "Высокий", new Date("2019-2-18")),
+                this.createTask("Описание задачи №4", new Date("2019-5-12"),"Завершена", "Средний", new Date("2019-4-20")),
             ],
             filter: 'all',
             term: '',
@@ -45,6 +45,7 @@ class App extends React.Component {
         this.handlerAddTask = (formState) => {
             const newTask = this.createTask(formState.description,
                                             formState.datePlan,
+                                            formState.status,
                                             formState.priority);
             this.setState(({tasks}) => {
                 const newData = [
@@ -138,6 +139,12 @@ class App extends React.Component {
     
     render() {
         const tasks = this.state.tasks;
+        const counts = {
+            all: tasks.length,
+            new: this.filter(tasks, 'new').length,
+            process: this.filter(tasks, 'process').length,
+            complete: this.filter(tasks, 'complete').length
+        }
         const visibleTasks = this.search(tasks, this.state.term);
         const filteredTasks = this.filter(visibleTasks, this.state.filter);
 
@@ -146,7 +153,8 @@ class App extends React.Component {
                 <Panel handlerAddTask={this.handlerAddTask}
                        onSearchTask={this.onSearchTask}
                        filter={this.state.filter}
-                       onClickFilter={this.onClickFilter} />
+                       onClickFilter={this.onClickFilter}
+                       counts={counts} />
                 <TaskList data={filteredTasks}
                           handlerDeleteTask={this.handlerDeleteTask}
                           handlerEditTask={this.handlerEditTask} />

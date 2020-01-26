@@ -10,7 +10,7 @@ class Form extends React.Component {
         this.state = {
             description: '',
             priority: 'Низкий',
-            status: 'Новый',
+            status: 'Новая',
             datePlan: new Date(),
         };
 

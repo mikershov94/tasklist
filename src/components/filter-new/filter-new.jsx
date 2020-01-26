@@ -6,7 +6,7 @@ const FilterNew = (props) => {
     return(
         <div className={bemClass}
              onClick={() => props.onClickFilter('new')}>
-            Новых - <span>1</span>
+            <span>{`Новых - ${props.count}`}</span>
         </div>
     );
 };
