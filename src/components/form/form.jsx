@@ -87,9 +87,9 @@ class Form extends React.Component {
                             <select onChange={this.onStatusChange}
                                     disabled={this.props.disabled}
                                     value={this.state.status} >
-                                <option value="Новый">Новый</option>
+                                <option value="Новая">Новая</option>
                                 <option value="В работе">В работе</option>
-                                <option value="Завершен">Завершен</option>
+                                <option value="Завершена">Завершена</option>
                             </select>
                         </div>
                     </div>

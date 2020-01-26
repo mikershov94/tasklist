@@ -26,7 +26,7 @@ class App extends React.Component {
                 status: newProps.status,
                 priority: newProps.priority,
                 datePlan: newProps.datePlan,
-                dateFact: newProps.status === "Завершен" ? new Date() : "-"
+                dateFact: newProps.status === "Завершена" ? new Date() : "-"
             }
         };
 
@@ -118,12 +118,28 @@ class App extends React.Component {
                 return item.description.toLowerCase().indexOf(term.toLowerCase()) > -1;
             })
         }
+
+        this.filter = (items, filter) => {
+            switch (filter) {
+                case 'all':
+                    return items;
+                case 'new':
+                    return items.filter((item) => item.status === "Новая");
+                case 'process':
+                    return items.filter((item) => item.status === "В работе");
+                case 'complete':
+                    return items.filter((item) => item.status === "Завершена");
+                default:
+                    return items;
+            }
+        }
     };
 
     
     render() {
         const tasks = this.state.tasks;
         const visibleTasks = this.search(tasks, this.state.term);
+        const filteredTasks = this.filter(visibleTasks, this.state.filter);
 
         return(
             <div className="container">
@@ -131,7 +147,7 @@ class App extends React.Component {
                        onSearchTask={this.onSearchTask}
                        filter={this.state.filter}
                        onClickFilter={this.onClickFilter} />
-                <TaskList data={visibleTasks}
+                <TaskList data={filteredTasks}
                           handlerDeleteTask={this.handlerDeleteTask}
                           handlerEditTask={this.handlerEditTask} />
             </div>
