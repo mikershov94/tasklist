@@ -14,7 +14,7 @@ const TaskListItem = (props) => {
             <td className="tasklist__status">{props.status}</td>
             <td className="tasklist__priority">{props.priority}</td>
             <td className="tasklist__date-plan">{dateToStr(props.datePlan)}</td>
-            <td className="tasklist__date-fact">{props.dateFact}</td>
+            <td className="tasklist__date-fact">{props.dateFact === "-" ? "-" : dateToStr(props.dateFact)}</td>
             <td className="tasklist__move">
                 <button onClick={() => props.handlerDeleteTask(props.id)}>Удалить</button>
             </td>

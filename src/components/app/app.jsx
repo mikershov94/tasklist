@@ -26,7 +26,7 @@ class App extends React.Component {
                 status: newProps.status,
                 priority: newProps.priority,
                 datePlan: newProps.datePlan,
-                dateFact: "-"
+                dateFact: newProps.status === "Завершен" ? new Date() : "-"
             }
         };
 
