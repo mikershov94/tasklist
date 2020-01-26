@@ -19,6 +19,17 @@ class App extends React.Component {
             }
         };
 
+        this.editTask = (newProps, id) => {
+            return {
+                id: id,
+                description: newProps.description,
+                status: newProps.status,
+                priority: newProps.priority,
+                datePlan: newProps.datePlan,
+                dateFact: "-"
+            }
+        };
+
         this.state = {
             edit: false,
             tasks: [
@@ -45,8 +56,25 @@ class App extends React.Component {
             });
         };
 
-        this.handlerEditTask = (id) => {
-            console.log('Hello Edit' + id);
+
+        this.handlerEditTask = (id, formState) => {
+            this.setState(({tasks}) => {
+                const idx = tasks.findIndex((task) => task.id === id);
+                const newTask = this.editTask(formState, id);
+                
+                const before = tasks.slice(0, idx);
+                const after = tasks.slice(idx + 1);
+
+                const newData = [
+                    ...before,
+                    newTask,
+                    ...after
+                ];
+
+                return {
+                    tasks: newData,
+                }; 
+            })
         }
 
         this.handlerDeleteTask = (id) => {

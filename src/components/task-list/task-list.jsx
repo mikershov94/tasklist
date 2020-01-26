@@ -6,8 +6,8 @@ const TaskList = (props) => {
         const { id } = item;
         return(
             <TaskListItem key={id} 
-                          handlerDeleteTask={() => props.handlerDeleteTask(id)}
-                          handlerEditTask={() => props.handlerEditTask(id)} 
+                          handlerDeleteTask={props.handlerDeleteTask}
+                          handlerEditTask={props.handlerEditTask} 
                           {...item} />
         );
     })

@@ -41,7 +41,7 @@ class Form extends React.Component {
         this.onFormSubmit = (e) => {
             e.preventDefault();
             if (this.props.edit) {
-                this.props.handlerEditTask(this.state);
+                this.props.handlerEditTask(this.props.id, this.state);
             } else {
                 this.props.handlerAddTask(this.state);
             }
@@ -87,9 +87,9 @@ class Form extends React.Component {
                             <select onChange={this.onStatusChange}
                                     disabled={this.props.disabled}
                                     value={this.state.status} >
-                                <option value="new">Новый</option>
-                                <option value="process">В работе</option>
-                                <option value="complete">Завершен</option>
+                                <option value="Новый">Новый</option>
+                                <option value="В работе">В работе</option>
+                                <option value="Завершен">Завершен</option>
                             </select>
                         </div>
                     </div>

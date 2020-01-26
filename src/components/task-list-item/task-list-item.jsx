@@ -16,7 +16,7 @@ const TaskListItem = (props) => {
             <td className="tasklist__date-plan">{dateToStr(props.datePlan)}</td>
             <td className="tasklist__date-fact">{props.dateFact}</td>
             <td className="tasklist__move">
-                <button onClick={props.handlerDeleteTask}>Удалить</button>
+                <button onClick={() => props.handlerDeleteTask(props.id)}>Удалить</button>
             </td>
         </tr>
     );
