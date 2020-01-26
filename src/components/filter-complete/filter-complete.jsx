@@ -1,8 +1,11 @@
 import React from 'react';
 
-const FilterComplete = () => {
+const FilterComplete = (props) => {
+    const bemClass = props.active ? "panel__complete panel__complete_active" : "panel__complete";
+
     return(
-        <div className="panel__complete">
+        <div className={bemClass}
+             onClick={() => props.onClickFilter('complete')}>
             Завершено - <span>2</span>
         </div>
     );

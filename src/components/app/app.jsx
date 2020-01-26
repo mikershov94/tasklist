@@ -39,7 +39,7 @@ class App extends React.Component {
                 this.createTask("Описание задачи №4", new Date("2019-5-12"), "Средний"),
             ],
             filter: 'all',
-            term: ''
+            term: '',
         };
 
         this.handlerAddTask = (formState) => {
@@ -97,17 +97,41 @@ class App extends React.Component {
             })
         };
 
-        this.onSearchTask = (term) => {
-            console.log(term)
+        this.onSearchTask = (termStr) => {
+            this.setState({
+                term: termStr,
+            })
         };
+
+        this.onClickFilter = (filterStr) => {
+            this.setState({
+                filter: filterStr
+            })
+        };
+
+        this.search = (items, term) => {
+            if (term.length === 0) {
+                return items;
+            }
+            
+            return items.filter((item) => {
+                return item.description.toLowerCase().indexOf(term.toLowerCase()) > -1;
+            })
+        }
     };
+
     
     render() {
+        const tasks = this.state.tasks;
+        const visibleTasks = this.search(tasks, this.state.term);
+
         return(
             <div className="container">
                 <Panel handlerAddTask={this.handlerAddTask}
-                       onSearchTask={this.onSearchTask} />
-                <TaskList data={this.state.tasks}
+                       onSearchTask={this.onSearchTask}
+                       filter={this.state.filter}
+                       onClickFilter={this.onClickFilter} />
+                <TaskList data={visibleTasks}
                           handlerDeleteTask={this.handlerDeleteTask}
                           handlerEditTask={this.handlerEditTask} />
             </div>

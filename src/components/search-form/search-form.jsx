@@ -8,10 +8,12 @@ class SearchForm extends React.Component {
         }
 
         this.handlerInput = (e) => {
+            const term = e.target.value;
+
             this.setState({
-                term: e.target.value
+                term: term
             })
-            this.props.onSearchTask(this.state.term);
+            this.props.onSearchTask(term);
         }
     }
 

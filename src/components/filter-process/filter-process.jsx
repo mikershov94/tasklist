@@ -1,8 +1,11 @@
 import React from 'react';
 
-const FilterProcess = () => {
+const FilterProcess = (props) => {
+    const bemClass = props.active ? "panel__process panel__process_active" : "panel__process";
+
     return(
-        <div className="panel__process">
+        <div className={bemClass}
+             onClick={() => props.onClickFilter('process')}>
             В работе - <span>1</span>
         </div>
     );

@@ -9,19 +9,15 @@ import FIlterComplete from '../filter-complete';
 import "./panel.sass";
 import FilterComplete from '../filter-complete';
 
-const Panel = ({handlerAddTask, onSearchTask}) => {
-    const onClickFilter = (filter) => {
-
-    };
-
+const Panel = ({handlerAddTask, onSearchTask, onClickFilter, filter}) => {
     return(
         <div className="panel">
             <ModalAdd handlerAddTask={handlerAddTask} />
             <SearchForm onSearchTask={onSearchTask} />
-            <FilterAll />
-            <FilterNew />
-            <FilterProcess />
-            <FilterComplete />
+            <FilterAll onClickFilter={onClickFilter} active={filter === 'all' ? true : false} />
+            <FilterNew onClickFilter={onClickFilter} active={filter === 'new' ? true : false} />
+            <FilterProcess onClickFilter={onClickFilter} active={filter === 'process' ? true : false} />
+            <FilterComplete onClickFilter={onClickFilter} active={filter === 'complete' ? true : false} />
         </div>
     );
 };
