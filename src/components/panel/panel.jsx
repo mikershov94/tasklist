@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from '../modal';
+import ModalAdd from '../modal-add';
 
-const Panel = ({handleAddTask}) => {
+const Panel = ({handlerAddTask}) => {
     return(
         <div className="panel">
-            <Modal handleAddTask={handleAddTask} />
+            <ModalAdd handlerAddTask={handlerAddTask} />
         </div>
     );
 };

@@ -2,9 +2,9 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import Form from '../form';
 
-import "./modal.sass"
+import "./modal-add.sass"
 
-const Modal = ({handleAddTask}) => {
+const ModalAdd = ({handlerAddTask}) => {
     return(
         <Popup trigger={<button className="panel__add-but" >Добавить задачу</button>}
                modal
@@ -14,12 +14,14 @@ const Modal = ({handleAddTask}) => {
                     <a className="modal__close" onClick={close}>
                         &times;
                     </a>
-                    <Form handleAddTask={handleAddTask}
-                          close={close} />
+                    <Form handlerAddTask={handlerAddTask}
+                          close={close}
+                          disabled={true}
+                          edit={false} />
                 </div>
             )}
         </Popup>
     );
 };
 
-export default Modal;
+export default ModalAdd;

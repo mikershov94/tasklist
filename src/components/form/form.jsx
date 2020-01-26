@@ -1,4 +1,6 @@
 import React from 'react';
+import { dateToAttr } from '../../lib';
+
 
 import "./form.sass";
 
@@ -37,11 +39,29 @@ class Form extends React.Component {
         };
 
         this.onFormSubmit = (e) => {
-            e.preventDefault()
-            this.props.handleAddTask(this.state);
+            e.preventDefault();
+            if (this.props.edit) {
+                this.props.handlerEditTask(this.state);
+            } else {
+                this.props.handlerAddTask(this.state);
+            }
 
             this.props.close();
         };
+
+    }
+
+    componentDidMount() {
+        if (this.props.edit) {
+            this.setState(() => {
+                return {
+                    description: this.props.description,
+                    status: this.props.status,
+                    priority: this.props.priority,
+                    datePlan: this.props.datePlan,
+                }
+            })
+        }
     }
 
     render() {
@@ -51,12 +71,12 @@ class Form extends React.Component {
                 <form onSubmit={this.onFormSubmit}>
                     <div className="form__input-description">
                         <label>Описание (*):</label>
-                        <input type="text" onChange={this.onDescriptionChange} />
+                        <input type="text" value={this.state.description} onChange={this.onDescriptionChange} />
                     </div>
                     <div className="form__selects">
                         <div className="form__input-priority">
                             <label>Приоритет: </label>
-                            <select onChange={this.onPriorityChange}>
+                            <select onChange={this.onPriorityChange} value={this.state.priority}>
                                 <option value="Низкий">Низкий</option>
                                 <option value="Средний">Средний</option>
                                 <option value="Высокий">Высокий</option>
@@ -64,7 +84,9 @@ class Form extends React.Component {
                         </div>
                         <div className="form__input-status">
                             <label>Статус: </label>
-                            <select onChange={this.onStatusChange}>
+                            <select onChange={this.onStatusChange}
+                                    disabled={this.props.disabled}
+                                    value={this.state.status} >
                                 <option value="new">Новый</option>
                                 <option value="process">В работе</option>
                                 <option value="complete">Завершен</option>
@@ -73,7 +95,7 @@ class Form extends React.Component {
                     </div>
                     <div className="form__date-plan">
                         <label>Крайний срок:</label>
-                        <input type="date" onChange={this.onDatePlanChange} />
+                        <input type="date" value={dateToAttr(this.state.datePlan)} onChange={this.onDatePlanChange} />
                     </div>
                     <div className="form__submit">
                         <button onClick={this.onFormSubmit}>Сохранить</button>

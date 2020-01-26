@@ -8,7 +8,6 @@ class App extends React.Component {
     constructor() {
         super();
         this.initId = 0;
-
         this.createTask = (description, date, priority="Низкий") => {
             return {
                 id: this.initId++,
@@ -21,6 +20,7 @@ class App extends React.Component {
         };
 
         this.state = {
+            edit: false,
             tasks: [
                 this.createTask("Описание задачи №1", new Date("2019-1-1")),
                 this.createTask("Описание задачи №2", new Date("2019-4-23"), "Средний"),
@@ -29,7 +29,7 @@ class App extends React.Component {
             ],
         };
 
-        this.handleAddTask = (formState) => {
+        this.handlerAddTask = (formState) => {
             const newTask = this.createTask(formState.description,
                                             formState.datePlan,
                                             formState.priority);
@@ -44,6 +44,10 @@ class App extends React.Component {
                 }
             });
         };
+
+        this.handlerEditTask = (id) => {
+            console.log('Hello Edit' + id);
+        }
 
         this.handlerDeleteTask = (id) => {
             this.setState(({tasks}) => {
@@ -67,9 +71,10 @@ class App extends React.Component {
     render() {
         return(
             <div className="container">
-                <Panel handleAddTask={this.handleAddTask} />
+                <Panel handlerAddTask={this.handlerAddTask} />
                 <TaskList data={this.state.tasks}
-                          handlerDeleteTask={this.handlerDeleteTask} />
+                          handlerDeleteTask={this.handlerDeleteTask}
+                          handlerEditTask={this.handlerEditTask} />
             </div>
         );
     }

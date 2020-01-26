@@ -1,17 +1,16 @@
 import React from 'react';
+import ModalEdit from '../modal-edit';
+import { dateToStr } from '../../lib';
 
 import "./task-list-item.sass";
 
 const TaskListItem = (props) => {
-    const dateToStr = (date) => {
-        const day = (date.getDate()) < 10 ? '0' + String(date.getDate()) : String(date.getDate());
-        const month = (date.getMonth() + 1) < 10 ? '0' + String(date.getMonth() + 1) : String(date.getMonth() + 1)
-        const dateStr = day + '.' + month + '.' + String(date.getFullYear());
-        return dateStr;
-    };
+    const greyClass = (props.id % 2) === 0 ? 'tasklist__row' : 'tasklist__row_grey';
     return(
-        <tr>
-            <td className="tasklist__description">{props.description}</td>
+        <tr className={greyClass}>
+            <td className="tasklist__description">
+                <ModalEdit {...props} />
+            </td>
             <td className="tasklist__status">{props.status}</td>
             <td className="tasklist__priority">{props.priority}</td>
             <td className="tasklist__date-plan">{dateToStr(props.datePlan)}</td>

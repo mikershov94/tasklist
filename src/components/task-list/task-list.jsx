@@ -3,11 +3,12 @@ import TaskListItem from '../task-list-item';
 
 const TaskList = (props) => {
     const items = props.data.map((item) => {
-        const { id, ...itemProps } = item;
+        const { id } = item;
         return(
             <TaskListItem key={id} 
-                          handlerDeleteTask={() => props.handlerDeleteTask(id)} 
-                          {...itemProps} />
+                          handlerDeleteTask={() => props.handlerDeleteTask(id)}
+                          handlerEditTask={() => props.handlerEditTask(id)} 
+                          {...item} />
         );
     })
 
